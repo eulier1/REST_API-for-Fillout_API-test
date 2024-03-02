@@ -1,9 +1,4 @@
-
-type FilterClauseType = {
-	id: string;
-	condition: 'equals' | 'does_not_equal' | 'greater_than' | 'less_than';
-	value: number | string;
-}
+import { FilterClauseType } from "../../types/filter";
 
 
 export const handleInputErrors = (req, res, next) => {
@@ -17,6 +12,7 @@ export const handleInputErrors = (req, res, next) => {
         res.status(400)
         res.json({msg: "Invalid condition. Allow conditions : 'equals' | 'does_not_equal' | 'greater_than' | 'less_than'"})
     } else {
+        req.query.filters = filters
         next()
     }
 
